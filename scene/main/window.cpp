@@ -34,7 +34,7 @@
 #include "core/config/project_settings.h"
 #include "core/debugger/engine_debugger.h"
 #include "core/input/shortcut.h"
-#include "core/string/translation.h"
+#include "core/string/translation_server.h"
 #include "core/variant/variant_parser.h"
 #include "scene/gui/control.h"
 #include "scene/theme/theme_db.h"
@@ -810,7 +810,7 @@ void Window::update_mouse_cursor_state() {
 	mm->set_position(pos);
 	mm->set_global_position(xform.xform(pos));
 	mm->set_device(InputEvent::DEVICE_ID_INTERNAL);
-	push_input(mm);
+	push_input(mm, true);
 }
 
 void Window::show() {

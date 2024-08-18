@@ -388,6 +388,14 @@ class DisplayServerWindows : public DisplayServer {
 	String tablet_driver;
 	Vector<String> tablet_drivers;
 
+	enum DriverID {
+		DRIVER_ID_COMPAT_OPENGL3 = 1 << 0,
+		DRIVER_ID_COMPAT_ANGLE_D3D11 = 1 << 1,
+		DRIVER_ID_RD_VULKAN = 1 << 2,
+		DRIVER_ID_RD_D3D12 = 1 << 3,
+	};
+	static BitField<DriverID> tested_drivers;
+
 	enum TimerID {
 		TIMER_ID_MOVE_REDRAW = 1,
 		TIMER_ID_WINDOW_ACTIVATION = 2,
@@ -441,6 +449,7 @@ class DisplayServerWindows : public DisplayServer {
 
 		Vector<Vector2> mpath;
 
+		bool create_completed = false;
 		bool pre_fs_valid = false;
 		RECT pre_fs_rect;
 		bool maximized = false;
